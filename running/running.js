@@ -1,53 +1,25 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
-} from 'react-native';
-
-class running extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  View,
+  ListView,
+} from'react-native';
+var running =React.createClass({
+    getInitialState: function() {
+      var ds = new ListView.DataSource({rowHasChanged: (r3, r4) => r3 !== r4});
+        return {
+          dataSource: ds.cloneWithRows(['row 1', 'row 2','row 3','row 4','row 5','row 6','row 7','row 8']),
+        };
+    },
+    render: function() {
+      return (
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) =><Text>{rowData}</Text>}
+        />
+      );
+    }
 });
 module.exports = running;
-// AppRegistry.registerComponent('running', () => running);
